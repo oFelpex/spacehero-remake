@@ -4,7 +4,8 @@
     box-sizing: border-box;
     overflow: hidden;
 }
- 
+
+/*MENU*/
 .space {
     position: absolute;
     height: 100%;
@@ -28,7 +29,7 @@
     z-index: 2;
 }
 .stars {
-    position: absolute;
+    position: fixed;
     background-color: rgb(231, 209, 229);
     z-index: 1;
     animation: starsMenu 3s linear infinite;
@@ -36,5 +37,108 @@
 @keyframes starsMenu {
     100% {
         rotate: 360deg;
+    }
+}
+.rect_menu {
+    position: absolute;
+    height: 8%;
+    width: 12%;
+    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    font-Family: 'Arial';
+    font-Size: 30px;
+    color:white;
+    filter: drop-shadow(0px 0px 5px hsla(0, 0%, 0%, 0.25));
+
+    transform: translate(150%, 150%);
+    border: 5px solid hsla(0, 100%, 50%, 0.75);
+    border-top-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+    background: none;
+    z-index: 2;
+}
+.rect_menu:hover {
+    animation: rainbow_border 5s ease-in-out infinite;
+}
+@keyframes rainbow_border {
+    0%{
+        border: 5px solid hsla(0, 100%, 50%, 0.75);
+        height: 8%;
+        width: 12%;
+        color:hsla(0, 100%, 50%, 0.75);
+        transform: translate(150%, 150%);
+    }
+    10%{
+        border: 5px solid hsla(36, 100%, 50%, 0.75);
+        height: 9%;
+        width: 13%;
+        color:hsla(36, 100%, 50%, 0.75);
+        transform: translate(135%, 130%);
+    }
+    20%{
+        border: 5px solid hsla(64, 100%, 50%, 0.75);
+        height: 8%;
+        width: 12%;
+        color:hsla(64, 100%, 50%, 0.75);
+        transform: translate(150%, 150%);
+    }
+    30%{
+        border: 5px solid hsla(110, 100%, 50%, 0.75);
+        height: 9%;
+        width: 13%;
+        color:hsla(110, 100%, 50%, 0.75);
+        transform: translate(135%, 130%);
+    }
+    40%{
+        border: 5px solid hsla(173, 100%, 50%, 0.75);
+        height: 8%;
+        width: 12%;
+        color:hsla(173, 100%, 50%, 0.75);
+        transform: translate(150%, 150%);
+    }
+    50%{
+        border: 5px solid hsla(206, 100%, 50%, 0.75);
+        height: 9%;
+        width: 13%;
+        color:hsla(206, 100%, 50%, 0.75);
+        transform: translate(135%, 130%);
+    }
+    60%{
+        border: 5px solid hsla(247, 100%, 50%, 0.75);
+        height: 8%;
+        width: 12%;
+        color:hsla(247, 100%, 50%, 0.75);
+        transform: translate(150%, 150%);
+    }
+    70%{
+        border: 5px solid hsla(275, 100%, 50%, 0.75);
+        height: 9%;
+        width: 13%;
+        color:hsla(275, 100%, 50%, 0.75);
+        transform: translate(135%, 130%);
+    }
+    80%{
+        border: 5px solid hsla(318, 100%, 50%, 0.75);
+        height: 8%;
+        width: 12%;
+        color:hsla(318, 100%, 50%, 0.75);
+        transform: translate(150%, 150%);
+    }
+    90%{
+        border: 5px solid hsla(35, 100%, 50%, 0.75);
+        height: 9%;
+        width: 13%;
+        color:hsla(35, 100%, 50%, 0.75);
+        transform: translate(135%, 130%);
+    }
+    100%{
+        border: 5px solid hsla(0, 100%, 50%, 0.75);
+        height: 8%;
+        width: 12%;
+        color:hsla(0, 100%, 50%, 0.75);
+        transform: translate(150%, 150%);
     }
 }

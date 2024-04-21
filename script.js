@@ -24,12 +24,36 @@ function stars()
     }
 
 }
+class Rect {
+    constructor(top, left, rect_text) {
+        this.rect = document.createElement('div');
+        this.rect.classList.add('rect_menu');
+        this.rect.style.top = top;
+        this.rect.style.left = left;
+        this.rect.innerHTML = rect_text;
+    }
+    addToBody() {
+        document.body.appendChild(this.rect);
+    }
+}
 if(tela == 0)
 {
+    const space = document.createElement('div');
+    space.classList.add('space');
+    document.body.appendChild(space);
+    
+    const rect_play = new Rect(50 + '%', 50 + '%', 'Jogar');
+    rect_play.addToBody();
+    const rect_options = new Rect(65 + '%', 50 + '%', 'Opções')
+    rect_options.addToBody();
+    
+
+    
+
+
     const character = document.querySelector('.character');
     character.style.display = 'block';
     const nave_menu = document.querySelector('.nave_menu');
     nave_menu.style.display = 'block';
     stars();
 }
-
