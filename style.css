@@ -29,7 +29,7 @@
     z-index: 2;
 }
 .stars {
-    position: fixed;
+    position: absolute;
     background-color: rgb(231, 209, 229);
     z-index: 1;
     animation: starsMenu 3s linear infinite;
@@ -43,6 +43,7 @@
     position: absolute;
     height: 8%;
     width: 12%;
+    cursor: pointer;
     
     display: flex;
     justify-content: center;
@@ -141,4 +142,16 @@
         color:hsla(0, 100%, 50%, 0.75);
         transform: translate(150%, 150%);
     }
+}
+.credits {
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    font-Family: 'Arial';
+    font-Size: 15px;
+    color: white;
+    bottom: 0%;
+    left: 85%;
 }

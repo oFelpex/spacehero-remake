@@ -1,4 +1,6 @@
 let tela = 0;
+
+
 class Stars {
     constructor(size, top, left){
         this.stars = document.createElement('div');
@@ -25,12 +27,27 @@ function stars()
 
 }
 class Rect {
-    constructor(top, left, rect_text) {
+    constructor(top, left, rect_text, play, options) {
         this.rect = document.createElement('div');
         this.rect.classList.add('rect_menu');
         this.rect.style.top = top;
         this.rect.style.left = left;
         this.rect.innerHTML = rect_text;
+        play; options;
+        switch (true) {
+            case play:
+                this.rect.addEventListener('click', () => {
+                    tela = 1;
+                    
+                });
+            break;
+            case options:
+                this.rect.addEventListener('click', () => {
+                    tela = 2;
+
+                });
+            break;
+        }
     }
     addToBody() {
         document.body.appendChild(this.rect);
@@ -38,22 +55,29 @@ class Rect {
 }
 if(tela == 0)
 {
+    stars();
     const space = document.createElement('div');
     space.classList.add('space');
     document.body.appendChild(space);
     
-    const rect_play = new Rect(50 + '%', 50 + '%', 'Jogar');
-    rect_play.addToBody();
-    const rect_options = new Rect(65 + '%', 50 + '%', 'Opções')
-    rect_options.addToBody();
-    
-
-    
-
+    const credits = document.createElement('div');
+    credits.classList.add('credits');
+    credits.innerHTML = 'By Felpex';
+    document.body.appendChild(credits);
 
     const character = document.querySelector('.character');
     character.style.display = 'block';
     const nave_menu = document.querySelector('.nave_menu');
     nave_menu.style.display = 'block';
-    stars();
+    
+    const rect_play = new Rect(50 + '%', 50 + '%', 'Jogar', true, false);
+    rect_play.addToBody();
+    const rect_options = new Rect(65 + '%', 50 + '%', 'Opções', false, true)
+    rect_options.addToBody();
 }
+
+if(tela == 1)
+{
+
+}
+//NÃO POSSO IR COM ESSA DE TELA, TEREI DE PENSAR EM OUTRA FORMA DE MUDAR DE TELA;
