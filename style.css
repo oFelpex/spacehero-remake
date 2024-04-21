@@ -1,0 +1,40 @@
+*{
+    margin: 0 auto;
+    padding: 0 auto;
+    box-sizing: border-box;
+    overflow: hidden;
+}
+ 
+.space {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    background: linear-gradient(rgb(40, 0, 101), rgb(65, 20, 100));
+    z-index: 0;
+}
+.character {
+    position: absolute;
+    display: none;
+    width: 10%;
+    top: 78%;
+    left: 3%;
+    z-index: 3;
+}
+.nave_menu {
+    position: absolute;
+    display: none;
+    width: 40%;
+    top: 50%;
+    z-index: 2;
+}
+.stars {
+    position: absolute;
+    background-color: rgb(231, 209, 229);
+    z-index: 1;
+    animation: starsMenu 3s linear infinite;
+}
+@keyframes starsMenu {
+    100% {
+        rotate: 360deg;
+    }
+}
