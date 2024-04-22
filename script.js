@@ -1,6 +1,3 @@
-let tela = 0;
-
-
 class Stars {
     constructor(size, top, left){
         this.stars = document.createElement('div');
@@ -26,6 +23,14 @@ function stars()
     }
 
 }
+function charAndSpaceship() 
+{
+    const character = document.querySelector('.character');
+    character.style.display = 'block';
+    const nave_menu = document.querySelector('.nave_menu');
+    nave_menu.style.display = 'block';
+}
+
 class Rect {
     constructor(top, left, rect_text, play, options) {
         this.rect = document.createElement('div');
@@ -34,17 +39,18 @@ class Rect {
         this.rect.style.left = left;
         this.rect.innerHTML = rect_text;
         play; options;
+
         switch (true) {
             case play:
                 this.rect.addEventListener('click', () => {
-                    tela = 1;
-                    
+                    removeTela0();
+                    gameScreen();
                 });
             break;
             case options:
                 this.rect.addEventListener('click', () => {
-                    tela = 2;
-
+                    removeTela0();
+                    optionsScreen();
                 });
             break;
         }
@@ -53,8 +59,38 @@ class Rect {
         document.body.appendChild(this.rect);
     }
 }
-if(tela == 0)
+function rectsForMenu()
 {
+    const rect_play = new Rect(50 + '%', 50 + '%', 'Jogar', true, false);
+    rect_play.addToBody();
+
+    const rect_options = new Rect(65 + '%', 50 + '%', 'Opções', false, true)
+    rect_options.addToBody();
+}
+function removeTela0()
+{
+    const space = document.querySelector('.space');
+    space.remove();
+
+    const credits = document.querySelector('.credits');
+    credits.remove();
+
+    const rects = document.querySelectorAll('.rect_menu');
+    rects.forEach(rects => {
+        rects.style.display = 'none';
+    });
+
+    const character = document.querySelector('.character');
+    character.style.display = 'none';
+    const nave_menu = document.querySelector('.nave_menu');
+    nave_menu.style.display = 'none';
+
+    const stars = document.querySelectorAll('.stars');
+    stars.forEach(stars => {
+        stars.style.display = 'none';
+    });
+}
+function initialScreen() {
     stars();
     const space = document.createElement('div');
     space.classList.add('space');
@@ -65,19 +101,15 @@ if(tela == 0)
     credits.innerHTML = 'By Felpex';
     document.body.appendChild(credits);
 
-    const character = document.querySelector('.character');
-    character.style.display = 'block';
-    const nave_menu = document.querySelector('.nave_menu');
-    nave_menu.style.display = 'block';
-    
-    const rect_play = new Rect(50 + '%', 50 + '%', 'Jogar', true, false);
-    rect_play.addToBody();
-    const rect_options = new Rect(65 + '%', 50 + '%', 'Opções', false, true)
-    rect_options.addToBody();
+
+    charAndSpaceship();
+    rectsForMenu();
+}
+initialScreen();
+function gameScreen() {
+    alert('game');
+}
+function optionsScreen() {
+    alert('options');
 }
 
-if(tela == 1)
-{
-
-}
-//NÃO POSSO IR COM ESSA DE TELA, TEREI DE PENSAR EM OUTRA FORMA DE MUDAR DE TELA;
