@@ -106,10 +106,6 @@ function initialScreen() {
     rectsForMenu();
 }
 initialScreen();
-function gameScreen() {
-    alert('game');
-}
-function optionsScreen() {
-    alert('options');
-}
+
+
 

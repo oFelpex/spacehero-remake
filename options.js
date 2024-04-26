@@ -1,0 +1,3 @@
+function optionsScreen() {
+    alert('options');
+}
