@@ -30,7 +30,44 @@ function charAndSpaceship()
     const nave_menu = document.querySelector('.nave_menu');
     nave_menu.style.display = 'block';
 }
-
+class Cloud {
+    constructor(left, right, animation, animationDuration) {
+        this.cloudElement = document.createElement('div');
+        this.cloudElement.classList.add('cloudMain');
+        this.cloudElement.style.height = Math.floor(Math.random() * 4) + 'em';
+        this.cloudElement.style.top = Math.floor(Math.random() * (window.innerHeight)) + 'px';
+        this.cloudElement.style.width = Math.floor(Math.random() * 10) + 'em';
+        this.cloudElement.style.left = left;
+        this.cloudElement.style.right = right;
+        this.cloudElement.style.animation = animation;
+        this.cloudElement.style.animationDuration = animationDuration;
+    }
+    addToBody() {
+        document.body.appendChild(this.cloudElement);
+    }
+}
+function clouds() {
+    for (let i = 0; i < 8; i++) 
+    {
+        const cloudLeft = new Cloud(
+            Math.floor(Math.random() * -500) + 'px',
+            500,
+            'moveLeftToRight 100s linear infinite',
+            (Math.random() * ((150 - 50)) + 50) + 's'
+        );
+        cloudLeft.addToBody();
+    }
+    for (let i = 0; i < 2; i++) 
+    {
+        const cloudRight = new Cloud(
+            500,
+            Math.floor(Math.random() * 500) + 'px',
+            'moveRightToLeft 5s linear infinite',
+            (Math.random() * ((250 - 150)) + 150) + 's'
+        );
+        cloudRight.addToBody();
+    }
+}
 class Rect {
     constructor(top, left, rect_text, play, options) {
         this.rect = document.createElement('div');
@@ -92,6 +129,8 @@ function removeTela0()
 }
 function initialScreen() {
     stars();
+    clouds();
+
     const space = document.createElement('div');
     space.classList.add('space');
     document.body.appendChild(space);
