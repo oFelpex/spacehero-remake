@@ -23,6 +23,26 @@ function stars()
     }
 
 }
+//CLASSE AQUI
+function shootingStars() {
+    const shootingStarsBlue = document.querySelector('.shootingStars_blue');
+    shootingStarsBlue.style.top = (Math.random() * window.innerHeight) + 'px';
+    shootingStarsBlue.style.left = (Math.random() * window.innerWidth) + 'px';
+    shootingStarsBlue.style.rotate = (Math.random() * 90) +'deg';
+    
+    const shootingStarsRed = document.querySelector('.shootingStars_red');
+    shootingStarsRed.style.top = (Math.random() * window.innerHeight) + 'px';
+    shootingStarsRed.style.left = (Math.random() * window.innerWidth) + 'px';
+    shootingStarsRed.style.rotate = (Math.random() * 90) +'deg';
+
+    setTimeout(() => {
+        shootingStarsBlue.style.display = 'block';
+        shootingStarsRed.style.display = 'block';
+        shootingStarsBlue.style.animation = 'tapaburaco 0.99s linear';
+        shootingStarsRed.style.animation = 'tapaburaco 0.99s linear';
+    }, 8000);
+}
+
 function charAndSpaceship() 
 {
     const character = document.querySelector('.character');
@@ -32,9 +52,9 @@ function charAndSpaceship()
 }
 class Clouds{
     constructor(topContainer, leftContainer, animation, animationDuration, 
-        top1, left1, height1, width1, 
-        top2, left2, height2, width2, 
-        top3, left3, height3, width3){
+        top1, left1, height1, width1, opacity1,
+        top2, left2, height2, width2, opacity2,
+        top3, left3, height3, width3, opacity3){
         this.containerClouds = document.createElement('div');
         this.containerClouds.classList.add('containerClouds');
         this.containerClouds.style.top = topContainer;
@@ -48,6 +68,7 @@ class Clouds{
         this.cloud1.style.left = left1;
         this.cloud1.style.height = height1;
         this.cloud1.style.width = width1;
+        this.cloud1.style.opacity = opacity1;
         this.containerClouds.appendChild(this.cloud1);
 
         this.cloud2 = document.createElement('div');
@@ -56,6 +77,7 @@ class Clouds{
         this.cloud2.style.left = left2;
         this.cloud2.style.height = height2;
         this.cloud2.style.width = width2;
+        this.cloud2.style.opacity = opacity2;
         this.containerClouds.appendChild(this.cloud2);
 
         this.cloud3 = document.createElement('div');
@@ -64,6 +86,7 @@ class Clouds{
         this.cloud3.style.left = left3;
         this.cloud3.style.height = height3;
         this.cloud3.style.width = width3;
+        this.cloud3.style.opacity = opacity3;
         this.containerClouds.appendChild(this.cloud3);
         
     }
@@ -77,20 +100,24 @@ function clouds() {
         Math.floor(Math.random() * (-25 - (-75)) + (-75))+'%',
         'goLeft 5s linear infinite',
         Math.floor(Math.random() * (100 - 50) + 50)+'s', 
+
         Math.floor(Math.random() * (60 - 50) + 50) +'%',
         Math.floor(Math.random() * (30 - 5) + 5) +'%',
         Math.floor(Math.random() * (40 - 35) + 35) +'%',
         Math.floor(Math.random() * (70 - 60) + 60) +'%',
+        Math.floor(Math.random() * (100 - 50) + 50) +'%',
 
         Math.floor(Math.random() * (40 - 30) + 30) +'%',
         Math.floor(Math.random() * (30 - 5) + 5) +'%',
         Math.floor(Math.random() * (50 - 35) + 35) +'%',
         Math.floor(Math.random() * (50 - 40) + 40) +'%',
+        Math.floor(Math.random() * (100 - 50) + 50) +'%',
         
         Math.floor(Math.random() * (20 - 5) + 5) +'%',
         Math.floor(Math.random() * (50 - 5) + 5) +'%',
         Math.floor(Math.random() * (50 - 35) + 35) +'%',
-        Math.floor(Math.random() * (40 - 20) + 20) +'%'
+        Math.floor(Math.random() * (40 - 20) + 20) +'%',
+        Math.floor(Math.random() * (100 - 50) + 50) +'%'
     );
     document.body.appendChild(cloudsGenerator.containerClouds);
 }
@@ -183,8 +210,22 @@ function removeTela0()
 }
 function initialScreen() {
     stars();
-    clouds();
-
+    clouds(); 
+    //CLASEEEEEEEEEEEE
+    const shootingStarsBlue = document.querySelector('.shootingStars_blue');
+    shootingStarsBlue.addEventListener('animationend', () => {
+        shootingStarsBlue.style.animation = 'none';
+        shootingStarsBlue.style.display = 'none';
+        shootingStars();
+    });
+    const shootingStarsRed = document.querySelector('.shootingStars_red');
+    shootingStarsRed.addEventListener('animationend', () => {
+        shootingStarsRed.style.animation = 'none';
+        shootingStarsRed.style.display = 'none';
+        shootingStars();
+    });
+    //CRIAR CLASSE PARA ISSOOOOOOOOOOOOOOOOO
+    
     const space = document.createElement('div');
     space.classList.add('space');
     document.body.appendChild(space);
