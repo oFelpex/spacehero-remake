@@ -23,26 +23,48 @@ function stars()
     }
 
 }
-//CLASSE AQUI
-function shootingStars() {
-    const shootingStarsBlue = document.querySelector('.shootingStars_blue');
-    shootingStarsBlue.style.top = (Math.random() * window.innerHeight) + 'px';
-    shootingStarsBlue.style.left = (Math.random() * window.innerWidth) + 'px';
-    shootingStarsBlue.style.rotate = (Math.random() * 90) +'deg';
-    
-    const shootingStarsRed = document.querySelector('.shootingStars_red');
-    shootingStarsRed.style.top = (Math.random() * window.innerHeight) + 'px';
-    shootingStarsRed.style.left = (Math.random() * window.innerWidth) + 'px';
-    shootingStarsRed.style.rotate = (Math.random() * 90) +'deg';
-
-    setTimeout(() => {
-        shootingStarsBlue.style.display = 'block';
-        shootingStarsRed.style.display = 'block';
-        shootingStarsBlue.style.animation = 'tapaburaco 0.99s linear';
-        shootingStarsRed.style.animation = 'tapaburaco 0.99s linear';
-    }, 8000);
+function randomColorForShootingStar() {
+    let num = Math.floor((Math.random() * 4) + 1);
+    let color = '';
+    switch(num) {
+        case 1:
+            color = 'blue';
+            break;
+        case 2:
+            color = 'red';
+            break;
+        case 3:
+            color = 'yellow';
+            break;
+        case 4:
+            color = 'purple';
+            break;
+    }
+    return color;
 }
-
+class ShootingStars {
+    constructor(shootingStars_COLOR, top, left, rotate) {
+        this.shootingStar = document.querySelector(shootingStars_COLOR);
+        this.shootingStar.style.top = top;
+        this.shootingStar.style.left = left;
+        this.shootingStar.style.rotate = rotate;
+    }
+    addToBody() {
+        document.body.appendChild(this.shootingStar);
+    }
+}
+function randomShootingStars(color) { 
+    const shootingStarInstance = new ShootingStars (
+        '.shootingStars_' + color,
+        (Math.random() * (window.innerHeight-400)) + 'px',
+        (Math.random() * window.innerWidth) + 'px',
+        (Math.random() * 90) +'deg'
+    );
+    shootingStarInstance.addToBody();
+    setTimeout(() => {
+        shootingStarInstance.shootingStar.style.top = 1000+'%';
+    }, 900);
+}
 function charAndSpaceship() 
 {
     const character = document.querySelector('.character');
@@ -203,6 +225,11 @@ function removeTela0()
         stars.remove();
     });
 
+    const shootingStars = document.querySelectorAll('.shootingStars');
+    shootingStars.forEach(shootingStars => {
+        shootingStars.remove();
+    });
+
     const allClouds = document.querySelectorAll('.containerClouds');
     allClouds.forEach(allClouds => {
         allClouds.remove();
@@ -211,21 +238,10 @@ function removeTela0()
 function initialScreen() {
     stars();
     clouds(); 
-    //CLASEEEEEEEEEEEE
-    const shootingStarsBlue = document.querySelector('.shootingStars_blue');
-    shootingStarsBlue.addEventListener('animationend', () => {
-        shootingStarsBlue.style.animation = 'none';
-        shootingStarsBlue.style.display = 'none';
-        shootingStars();
-    });
-    const shootingStarsRed = document.querySelector('.shootingStars_red');
-    shootingStarsRed.addEventListener('animationend', () => {
-        shootingStarsRed.style.animation = 'none';
-        shootingStarsRed.style.display = 'none';
-        shootingStars();
-    });
-    //CRIAR CLASSE PARA ISSOOOOOOOOOOOOOOOOO
-    
+
+    setInterval(() => {
+        randomShootingStars(randomColorForShootingStar());
+    }, 4000);
     const space = document.createElement('div');
     space.classList.add('space');
     document.body.appendChild(space);

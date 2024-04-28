@@ -46,18 +46,12 @@
     width: 64px;
     background: none;
     z-index: 1;
-    animation: tapaburaco 1s linear;
+    animation: tapaburaco 0.9s linear;
 }
 @keyframes tapaburaco {
     100%{
         
     }
-}
-.shootingStars_blue {
-
-}
-.shootingStars_red {
-
 }
 .rect_menu {
     position: absolute;
