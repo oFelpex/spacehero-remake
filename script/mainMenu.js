@@ -43,26 +43,39 @@ function randomColorForShootingStar() {
     return color;
 }
 class ShootingStars {
-    constructor(shootingStars_COLOR, top, left, rotate) {
+    constructor(shootingStars_COLOR, shootingStars_COLOR_blur, top, left, rotate) {
         this.shootingStar = document.querySelector(shootingStars_COLOR);
         this.shootingStar.style.top = top;
         this.shootingStar.style.left = left;
         this.shootingStar.style.rotate = rotate;
+
+        this.shootingStar_blur = document.querySelector(shootingStars_COLOR_blur);
+        this.shootingStar_blur.style.top = top;
+        this.shootingStar_blur.style.left = left;
+        this.shootingStar_blur.style.rotate = rotate;
     }
     addToBody() {
-        document.body.appendChild(this.shootingStar);
+        document.body.appendChild(this.shootingStar, this.shootingStar_blur);
+
     }
 }
 function randomShootingStars(color) { 
+    let top = (Math.random() * (window.innerHeight-400));
+    let left = (Math.random() * window.innerWidth);
     const shootingStarInstance = new ShootingStars (
         '.shootingStars_' + color,
-        (Math.random() * (window.innerHeight-400)) + 'px',
-        (Math.random() * window.innerWidth) + 'px',
+        '.shootingStars_' + color + '_blur',
+        top + 'px',
+        left + 'px',
         (Math.random() * 90) +'deg'
     );
+    shootingStarInstance.shootingStar_blur.style.top = top-8 + 'px';
+    shootingStarInstance.shootingStar_blur.style.left = left-4 + 'px';
     shootingStarInstance.addToBody();
+
     setTimeout(() => {
-        shootingStarInstance.shootingStar.style.top = 1000+'%';
+        shootingStarInstance.shootingStar.style.top = -100+'%';
+        shootingStarInstance.shootingStar_blur.style.top = -100+'%';
     }, 900);
 }
 function charAndSpaceship() 
@@ -250,7 +263,6 @@ function initialScreen() {
     credits.classList.add('credits');
     credits.innerHTML = 'By Felpex';
     document.body.appendChild(credits);
-
 
     charAndSpaceship();
     rectsForMenu();
