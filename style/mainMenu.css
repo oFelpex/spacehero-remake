@@ -19,6 +19,7 @@
     width: 10%;
     top: 78%;
     left: 3%;
+    filter: drop-shadow(-15px 0px 10px hsla(0, 0%, 0%, 0.26));
     z-index: 3;
 }
 .nave_menu {
@@ -45,8 +46,7 @@
     height: 64px;
     width: 64px;
     background: none;
-    z-index: 1;
-    animation: tapaburaco 0.9s linear;
+    z-index: 0;
 }
 .shootingStars_blur {
     position: absolute;
@@ -56,12 +56,6 @@
     background: none;
     z-index: 1;
     filter: blur(10px);
-    animation: tapaburaco 0.9s linear;
-}
-@keyframes tapaburaco {
-    100%{
-        
-    }
 }
 .rect_menu {
     position: absolute;
