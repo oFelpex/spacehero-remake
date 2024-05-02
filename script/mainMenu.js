@@ -1,3 +1,14 @@
+function aimFollowMouse() {
+    const crosshair = document.getElementById('crosshair');
+    const container = document.getElementById('containerForTheAim');
+    container.addEventListener('mousemove', (event) => {
+        const mouseX = event.clientX - container.offsetLeft;
+        const mouseY = event.clientY - container.offsetTop;
+
+        crosshair.style.left = mouseX + 'px';
+        crosshair.style.top = mouseY + 'px';
+    });
+}
 class Stars {
     constructor(size, top, left){
         this.stars = document.createElement('div');
@@ -161,27 +172,12 @@ class Rect {
     constructor(top, left, rect_text, play, options) {
         this.rect = document.createElement('div');
         this.rect.classList.add('rect_menu');
+        
         this.rect.style.top = top;
         this.rect.style.left = left;
         this.rect.innerHTML = rect_text;
         play; options;
 
-        const rect_border = document.createElement('div');
-        rect_border.classList.add('rect_menu_border');
-        rect_border.style.top = top;
-        rect_border.style.left = left;
-        document.body.appendChild(rect_border);
-
-        this.rect.addEventListener('mouseenter', () => {
-            this.rect.style.animation = 'rainbow_border 5s ease-in-out infinite';
-            rect_border.style.animation = 'rainbow_border 5s ease-in-out infinite';
-            
-            });
-            this.rect.addEventListener('mouseleave', () => {
-            this.rect.style.animation = 'none';
-            rect_border.style.animation = 'none';
-              
-        });
         switch (true) {
             case play:
                 this.rect.addEventListener('click', () => {
@@ -197,20 +193,15 @@ class Rect {
             break;
         }
     }
-    addToBody() {
-        document.body.appendChild(this.rect);
-        
-    }
 }
 function rectsForMenu()
 {
+    const container = document.getElementById('containerForTheAim');
     const rect_play = new Rect(50 + '%', 50 + '%', 'Jogar', true, false);
-    rect_play.addToBody();
+    container.appendChild(rect_play.rect);
 
     const rect_options = new Rect(65 + '%', 50 + '%', 'Opções', false, true)
-    rect_options.addToBody();
-
-    
+    container.appendChild(rect_options.rect);
 }
 function removeTela0()
 {
@@ -224,10 +215,7 @@ function removeTela0()
     rects.forEach(rects => {
         rects.remove();
     });
-    const rects_border = document.querySelectorAll('.rect_menu_border');
-    rects_border.forEach(rects_border => {
-        rects_border.remove();
-    });
+
     const character = document.querySelector('.character');
     character.remove();
     const nave_menu = document.querySelector('.nave_menu');
@@ -249,12 +237,13 @@ function removeTela0()
     });
 }
 function initialScreen() {
+    aimFollowMouse();
     stars();
     clouds(); 
-
     setInterval(() => {
         randomShootingStars(randomColorForShootingStar());
     }, 4000);
+    
     const space = document.createElement('div');
     space.classList.add('space');
     document.body.appendChild(space);
