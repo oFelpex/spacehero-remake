@@ -27,7 +27,6 @@
 }
 .character {
     position: absolute;
-    display: none;
     width: 10%;
     top: 78%;
     left: 3%;
@@ -37,7 +36,6 @@
 }
 .nave_menu {
     position: absolute;
-    display: none;
     width: 40%;
     top: 48%;
     z-index: 2;

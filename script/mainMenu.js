@@ -91,10 +91,14 @@ function randomShootingStars(color) {
 }
 function charAndSpaceship() 
 {
-    const character = document.querySelector('.character');
-    character.style.display = 'block';
-    const nave_menu = document.querySelector('.nave_menu');
-    nave_menu.style.display = 'block';
+    const character = document.createElement('img');
+    character.src = 'assets/menu/character.gif';
+    character.classList.add('character');
+    document.body.appendChild(character);
+    const nave_menu = document.createElement('img');
+    nave_menu.src = 'assets/menu/nave_menu.png';
+    nave_menu.classList.add('nave_menu');
+    document.body.appendChild(nave_menu);
 }
 class Clouds{
     constructor(topContainer, leftContainer, animation, animationDuration, 
@@ -169,7 +173,7 @@ function clouds() {
 }
 }
 class Rect {
-    constructor(top, left, rect_text, play, options) {
+    constructor(top, left, rect_text, play, options, backToMenu) {
         this.rect = document.createElement('div');
         this.rect.classList.add('rect_menu');
         
@@ -191,6 +195,11 @@ class Rect {
                     optionsScreen();
                 });
             break;
+            case backToMenu:
+                this.rect.addEventListener('click', () => {
+                    removeTela1();
+                    initialScreen();
+                });
         }
     }
 }
