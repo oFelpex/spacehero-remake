@@ -17,6 +17,8 @@
 #crosshair {
     position: absolute;
     transform: translate(-50%, -50%);
+    pointer-events: none;
+    z-index: 99;
 }
 .space {
     position: absolute;

@@ -203,15 +203,20 @@ class Rect {
         }
     }
 }
+
+var rect_play;
+var rect_options;
 function rectsForMenu()
 {
     const container = document.getElementById('containerForTheAim');
-    const rect_play = new Rect(50 + '%', 50 + '%', 'Jogar', true, false);
+    rect_play = new Rect(50 + '%', 50 + '%', 'Jogar', true, false);
     container.appendChild(rect_play.rect);
 
-    const rect_options = new Rect(65 + '%', 50 + '%', 'Opções', false, true)
+    rect_options = new Rect(65 + '%', 50 + '%', 'Opções', false, true)
     container.appendChild(rect_options.rect);
 }
+rectsForMenu();
+
 function removeTela0()
 {
     const space = document.querySelector('.space');
@@ -219,11 +224,10 @@ function removeTela0()
 
     const credits = document.querySelector('.credits');
     credits.remove();
-
-    const rects = document.querySelectorAll('.rect_menu');
-    rects.forEach(rects => {
-        rects.remove();
-    });
+    
+    rect_back_to_menu.rect.style.top = 65 + '%';
+    rect_play.rect.style.top = 120 + '%';
+    rect_options.rect.style.top = 120 + '%';
 
     const character = document.querySelector('.character');
     character.remove();
@@ -249,6 +253,7 @@ function initialScreen() {
     aimFollowMouse();
     stars();
     clouds(); 
+    
     setInterval(() => {
         randomShootingStars(randomColorForShootingStar());
     }, 4000);
@@ -263,7 +268,6 @@ function initialScreen() {
     document.body.appendChild(credits);
 
     charAndSpaceship();
-    rectsForMenu();
 }
 initialScreen();
 
