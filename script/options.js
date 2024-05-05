@@ -39,6 +39,9 @@ rectForOptions();
 function optionsScreen() {
     changeMouse();
 
+    textAim = document.querySelector('.option_text_crosshair');
+    textAim.style.display = 'flex';
+
     rect_back_to_menu.rect.style.top = 65 + '%';
     const switch_label = document.querySelector('.switch');
     switch_label.style.display = 'block';
@@ -51,6 +54,9 @@ function optionsScreen() {
 function removeTela1() {
     const space = document.querySelector('.space');
     space.remove();
+
+    textAim = document.querySelector('.option_text_crosshair');
+    textAim.style.display = 'none';
 
     rect_play.rect.style.top = 50 + '%';
     rect_options.rect.style.top = 65 + '%';
