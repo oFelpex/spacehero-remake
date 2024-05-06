@@ -1,6 +1,6 @@
 function aimFollowMouse() {
     const crosshair = document.getElementById('crosshair');
-    const container = document.getElementById('containerForTheAim');
+    const container = document.getElementById('containerForTheCrosshair');
     container.addEventListener('mousemove', (event) => {
         const mouseX = event.clientX - container.offsetLeft;
         const mouseY = event.clientY - container.offsetTop;
@@ -208,7 +208,7 @@ var rect_play;
 var rect_options;
 function rectsForMenu()
 {
-    const container = document.getElementById('containerForTheAim');
+    const container = document.getElementById('containerForTheCrosshair');
     rect_play = new Rect(50 + '%', 50 + '%', 'Jogar', true, false);
     container.appendChild(rect_play.rect);
 
