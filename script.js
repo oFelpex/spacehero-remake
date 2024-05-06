@@ -1,4 +1,5 @@
-function aimFollowMouse() {
+//Menu principal:
+function CrosshairFollowMouse() {
     const crosshair = document.getElementById('crosshair');
     const container = document.getElementById('containerForTheCrosshair');
     container.addEventListener('mousemove', (event) => {
@@ -32,7 +33,6 @@ function stars()
         );
         star.addToBody();
     }
-
 }
 function randomColorForShootingStar() {
     let num = Math.floor((Math.random() * 4) + 1);
@@ -67,7 +67,6 @@ class ShootingStars {
     }
     addToBody() {
         document.body.appendChild(this.shootingStar, this.shootingStar_blur);
-
     }
 }
 function randomShootingStars(color) { 
@@ -89,12 +88,13 @@ function randomShootingStars(color) {
         shootingStarInstance.shootingStar_blur.style.top = -100+'%';
     }, 900);
 }
-function charAndSpaceship() 
+function addToBody_CharAndSpaceshipToBody() 
 {
     const character = document.createElement('img');
     character.src = 'assets/menu/character.gif';
     character.classList.add('character');
     document.body.appendChild(character);
+    
     const nave_menu = document.createElement('img');
     nave_menu.src = 'assets/menu/nave_menu.png';
     nave_menu.classList.add('nave_menu');
@@ -146,23 +146,27 @@ function clouds() {
     for(i=0; i<5; i++){
         const cloudsGenerator = new Clouds(
         
+        //4 parâmetros para o container das nuvens
         Math.random()*75+'%',
         Math.floor(Math.random() * (-25 - (-75)) + (-75))+'%',
         'goLeft 5s linear infinite',
         Math.floor(Math.random() * (100 - 50) + 50)+'s', 
 
+        //5 Parâmetros para a Cloud1
         Math.floor(Math.random() * (60 - 50) + 50) +'%',
         Math.floor(Math.random() * (30 - 5) + 5) +'%',
         Math.floor(Math.random() * (40 - 35) + 35) +'%',
         Math.floor(Math.random() * (70 - 60) + 60) +'%',
         Math.floor(Math.random() * (100 - 50) + 50) +'%',
 
+        //5 Parâmetros para a Cloud2
         Math.floor(Math.random() * (40 - 30) + 30) +'%',
         Math.floor(Math.random() * (30 - 5) + 5) +'%',
         Math.floor(Math.random() * (50 - 35) + 35) +'%',
         Math.floor(Math.random() * (50 - 40) + 40) +'%',
         Math.floor(Math.random() * (100 - 50) + 50) +'%',
         
+        //5 Parâmetros para a Cloud3
         Math.floor(Math.random() * (20 - 5) + 5) +'%',
         Math.floor(Math.random() * (50 - 5) + 5) +'%',
         Math.floor(Math.random() * (50 - 35) + 35) +'%',
@@ -185,72 +189,53 @@ class Rect {
         switch (true) {
             case play:
                 this.rect.addEventListener('click', () => {
-                    removeTela0();
+                    removeOfBody_mainMenu();
                     gameScreen();
                 });
             break;
             case options:
                 this.rect.addEventListener('click', () => {
-                    removeTela0();
+                    removeOfBody_mainMenu();
                     optionsScreen();
                 });
             break;
             case backToMenu:
                 this.rect.addEventListener('click', () => {
-                    removeTela1();
-                    initialScreen();
+                    removeOfBody_options();
+                    mainMenu();
                 });
         }
     }
 }
-
-var rect_play;
-var rect_options;
-function rectsForMenu()
-{
-    const container = document.getElementById('containerForTheCrosshair');
-    rect_play = new Rect(50 + '%', 50 + '%', 'Jogar', true, false);
-    container.appendChild(rect_play.rect);
-
-    rect_options = new Rect(65 + '%', 50 + '%', 'Opções', false, true)
-    container.appendChild(rect_options.rect);
-}
-rectsForMenu();
-
-function removeTela0()
-{
-    const space = document.querySelector('.space');
-    space.remove();
-
-    const credits = document.querySelector('.credits');
-    credits.remove();
+function rectsForMenu() {
+    const container_crosshair = document.getElementById('containerForTheCrosshair');
     
-    rect_back_to_menu.rect.style.top = 65 + '%';
-    rect_play.rect.style.top = 120 + '%';
-    rect_options.rect.style.top = 120 + '%';
+    const rectPlay = new Rect('50%', '50%', 'Jogar', true, false);
+    container_crosshair.appendChild(rectPlay.rect);
+    
+    const rectOptions = new Rect('65%', '50%', 'Opções', false, true);
+    container_crosshair.appendChild(rectOptions.rect);
 
-    const character = document.querySelector('.character');
-    character.remove();
-    const nave_menu = document.querySelector('.nave_menu');
-    nave_menu.remove();
+    return {rectPlay, rectOptions};
+}
+const {rectPlay, rectOptions} = rectsForMenu();
 
-    const stars = document.querySelectorAll('.stars');
-    stars.forEach(stars => {
-        stars.remove();
-    });
+function removeOfBody_mainMenu()
+{
+    rectPlay.rect.style.top = 120 + '%';
+    rectOptions.rect.style.top = 120 + '%';
 
-    const shootingStars = document.querySelectorAll('.shootingStars');
-    shootingStars.forEach(shootingStars => {
-        shootingStars.remove();
-    });
-
-    const allClouds = document.querySelectorAll('.containerClouds');
-    allClouds.forEach(allClouds => {
-        allClouds.remove();
+    const allDivs_mainMenu = document.querySelectorAll('.space, .credits, .character, .nave_menu');
+    allDivs_mainMenu.forEach(allDivs_mainMenu => {
+        allDivs_mainMenu.remove();
+    })
+    const allObjects_mainMenu = document.querySelectorAll('.containerClouds, .shootingStars, .stars');
+    allObjects_mainMenu.forEach(allObjects_mainMenu => {
+        allObjects_mainMenu.remove();
     });
 }
-function initialScreen() {
-    aimFollowMouse();
+function mainMenu() {
+    CrosshairFollowMouse();
     stars();
     clouds(); 
     
@@ -267,9 +252,86 @@ function initialScreen() {
     credits.innerHTML = 'By Felpex';
     document.body.appendChild(credits);
 
-    charAndSpaceship();
+    addToBody_CharAndSpaceshipToBody();
 }
-initialScreen();
+mainMenu();
+//Fim do mainMenu;
 
+//Opções:
+function rectForOptions() {
+    const container_crosshair = document.getElementById('containerForTheCrosshair');
+    const rectBackToMenu = new Rect (120 + '%', 25 + '%', 'Voltar', false, false, true);
+    rectBackToMenu.rect.addEventListener('click', () => {
+        rectBackToMenu.rect.style.top = 120 + '%';
+    });
+    container_crosshair.appendChild(rectBackToMenu.rect);
+    
+    return {rectBackToMenu};
+}
+const {rectBackToMenu} = rectForOptions();
 
+function changeMouse() {
+    const input = document.querySelector('.switch_crosshair input');
+    const switch_crosshair_label = document.querySelector('.switch_crosshair');
+    const crosshair = document.getElementById('crosshair');
+    const container_crosshair = document.getElementById('containerForTheCrosshair');
+    switch_crosshair_label.style.top = 0 + '%';
 
+    input.addEventListener('change', function() {
+        if (this.checked) {
+            //Se o switch estiver ativado
+            switch_crosshair_label.style.cursor = 'none';
+            container_crosshair.style.cursor = 'none';
+            crosshair.style.display = 'block';
+            const rects = document.querySelectorAll('.rect_menu');
+            rects.forEach(rects => {
+                rects.style.cursor = 'none';
+            });
+        } else {
+            //Se o switch estiver desativado
+            switch_crosshair_label.style.cursor = 'pointer';
+            container_crosshair.style.cursor = 'default';
+            crosshair.style.display = 'none';
+            const rects = document.querySelectorAll('.rect_menu');
+            rects.forEach(rects => {
+                rects.style.cursor = 'pointer';
+            });
+        }
+    });
+}
+function optionsScreen() {
+    changeMouse();
+
+    textCrosshair = document.querySelector('.option_text_crosshair');
+    textCrosshair.style.display = 'flex';
+
+    rectBackToMenu.rect.style.top = 65 + '%';
+    const switch_crosshair_label = document.querySelector('.switch_crosshair');
+    switch_crosshair_label.style.display = 'block';
+
+    const options_background = document.createElement('div');
+    options_background.classList.add('space');
+    document.body.appendChild(options_background);
+}
+function removeOfBody_options() {
+    //Devo mudar no futuro, não quero o msm background do menu nas opções:
+    const space = document.querySelector('.space');
+    space.remove();
+
+    textCrosshair = document.querySelector('.option_text_crosshair');
+    textCrosshair.style.display = 'none';
+
+    rectPlay.rect.style.top = 50 + '%';
+    rectOptions.rect.style.top = 65 + '%';
+
+    const switch_crosshair_label = document.querySelector('.switch_crosshair');
+    switch_crosshair_label.style.top = 120 + '%';
+
+}
+//Fim das opções;
+
+//Inicia o jogo:
+function gameScreen() {
+    alert('game');
+}
+//Fim do jogo;
