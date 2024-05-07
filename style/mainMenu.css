@@ -52,6 +52,7 @@
     pointer-events: none;
     animation: animationForTheMoon_PathX 120s linear infinite,
                animationForTheMoon_Rotate 120s linear infinite;
+    filter: drop-shadow(0px 0px 75px #ffffff80);
 }
 @keyframes animationForTheMoon_Rotate {
     0% {
