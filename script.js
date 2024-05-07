@@ -100,6 +100,12 @@ function addToBody_CharAndSpaceshipToBody()
     nave_menu.classList.add('nave_menu');
     document.body.appendChild(nave_menu);
 }
+function addToBody_moon_mainMenu() {
+    const moon = document.createElement('img');
+    moon.src = 'assets/menu/moon_mainMenu.png';
+    moon.classList.add('moon_mainMenu');
+    document.body.appendChild(moon);
+}
 class Clouds{
     constructor(topContainer, leftContainer, animation, animationDuration, 
         top1, left1, height1, width1, opacity1,
@@ -238,6 +244,7 @@ function mainMenu() {
     CrosshairFollowMouse();
     stars();
     clouds(); 
+    addToBody_moon_mainMenu();
     
     setInterval(() => {
         randomShootingStars(randomColorForShootingStar());
