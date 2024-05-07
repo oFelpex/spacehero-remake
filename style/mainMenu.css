@@ -50,43 +50,23 @@
     width: 8%;
     z-index: 1;
     pointer-events: none;
-    animation: animationForTheMoon_mainMenu 5s linear infinite;
+    animation: animationForTheMoon_PathX 120s linear infinite,
+               animationForTheMoon_Rotate 120s linear infinite;
 }
-
-/*FINALIZAR ANIMAÇÃOOOOOOOOOOOO, provavelmente é melhor pelo JS, funções quadráticas*/
-@keyframes animationForTheMoon_mainMenu {
+@keyframes animationForTheMoon_Rotate {
     0% {
-        transform: translate(-120%, 100%);
-    }
-    10% {
-        transform: translate(150%, 55%);
-    }
-    20% {
-        transform: translate(380%, 30%);
-    }
-    30% {
-        transform: translate(555%, 25%);
-    }
-    40% {
-        transform: translate(780%, 30%);
-    }
-    50% {
-        transform: translate(1005%, 55%);
-    }
-    60% {
-        transform: translate(-120%, 100%);
-    }
-    70% {
-        transform: translate(150%, 55%);
-    }
-    80% {
-        transform: translate(380%, 30%);
-    }
-    90% {
-        transform: translate(555%, 25%);
+        rotate: -30deg;
     }
     100% {
-        transform: translate(780%, 30%);
+        rotate: 5deg;
+    }
+}
+@keyframes animationForTheMoon_PathX {
+    0% {
+        transform: translate(-220%, 150%);
+    }
+    100% {
+        transform: translate(1310%, 150%);
     }
 }
 .stars {

@@ -105,6 +105,13 @@ function addToBody_moon_mainMenu() {
     moon.src = 'assets/menu/moon_mainMenu.png';
     moon.classList.add('moon_mainMenu');
     document.body.appendChild(moon);
+
+    setTimeout(() => {
+        moon.remove();
+        setTimeout(() => {
+            document.body.appendChild(moon);
+        }, 10000)
+    }, 120000);
 }
 class Clouds{
     constructor(topContainer, leftContainer, animation, animationDuration, 
@@ -231,7 +238,7 @@ function removeOfBody_mainMenu()
     rectPlay.rect.style.top = 120 + '%';
     rectOptions.rect.style.top = 120 + '%';
 
-    const allDivs_mainMenu = document.querySelectorAll('.space, .credits, .character, .nave_menu');
+    const allDivs_mainMenu = document.querySelectorAll('.space, .moon_mainMenu, .credits, .character, .nave_menu');
     allDivs_mainMenu.forEach(allDivs_mainMenu => {
         allDivs_mainMenu.remove();
     })
