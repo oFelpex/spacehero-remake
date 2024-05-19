@@ -155,7 +155,6 @@ class Clouds{
 }
 function clouds() {
     var cloudsGenerator_array = [];
-    let size = Math.floor(Math.random() * 10) +'%';
     for(i=0; i<5; i++){
         let cloudsGenerator = new Clouds(
         
