@@ -47,7 +47,6 @@ input:checked + .slider_crosshair:before {
 .slider_crosshair.round:before {
   border-radius: 50%;
 }
-
 .option_text_crosshair {
   display: none;
   justify-content: center;

@@ -151,12 +151,11 @@ class Clouds{
         this.cloud3.style.width = width3;
         this.cloud3.style.opacity = opacity3;
         this.containerClouds.appendChild(this.cloud3);
-        
     }
-
 }
 function clouds() {
     var cloudsGenerator_array = [];
+    let size = Math.floor(Math.random() * 10) +'%';
     for(i=0; i<5; i++){
         let cloudsGenerator = new Clouds(
         
