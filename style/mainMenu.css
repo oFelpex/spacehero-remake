@@ -59,15 +59,15 @@
         rotate: -30deg;
     }
     100% {
-        rotate: 5deg;
+        rotate: 10deg;
     }
 }
 @keyframes animationForTheMoon_PathX {
     0% {
-        transform: translate(-220%, 150%);
+        transform: translate(-320%, 150%);
     }
     100% {
-        transform: translate(1310%, 150%);
+        transform: translate(1510%, 150%);
     }
 }
 .stars {
@@ -258,7 +258,6 @@
     overflow: hidden;
 }
 .clouds{
-    position: relative;
     background: rgb(209, 172, 219);
     border-radius: 50px 50px;
     position: absolute;
@@ -268,7 +267,12 @@
     top: 50%;
     z-index: 2;
 }
-@keyframes goLeft{
+@keyframes goLeftFromRandomLeft {
+    100% {
+        left: calc(100% + 50px);
+    }
+}
+@keyframes goLeftForever{
     100% {
     left: calc(100% + 50px);
     }

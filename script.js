@@ -156,14 +156,15 @@ class Clouds{
 
 }
 function clouds() {
+    var cloudsGenerator_array = [];
     for(i=0; i<5; i++){
-        const cloudsGenerator = new Clouds(
+        let cloudsGenerator = new Clouds(
         
         //4 parâmetros para o container das nuvens
         Math.random()*75+'%',
-        Math.floor(Math.random() * (-25 - (-75)) + (-75))+'%',
-        'goLeft 5s linear infinite',
-        Math.floor(Math.random() * (100 - 50) + 50)+'s', 
+        Math.floor(Math.random() * window.innerWidth)+'px',
+        'goLeftFromRandomLeft 5s linear',
+        Math.floor(Math.random() * (60 - 20) + 20)+'s', 
 
         //5 Parâmetros para a Cloud1
         Math.floor(Math.random() * (60 - 50) + 50) +'%',
@@ -187,7 +188,16 @@ function clouds() {
         Math.floor(Math.random() * (100 - 50) + 50) +'%'
     );
     document.body.appendChild(cloudsGenerator.containerClouds);
+    cloudsGenerator_array.push(cloudsGenerator);
 }
+    cloudsGenerator_array.forEach(cloudsGenerator => {
+        cloudsGenerator.containerClouds.addEventListener('animationend', () => {
+            cloudsGenerator.containerClouds.style.animation = 'none';
+            cloudsGenerator.containerClouds.style.left = Math.floor(Math.random() * 50 - 80) + '%';
+            cloudsGenerator.containerClouds.style.animation = 'goLeftForever 5s linear infinite';
+            cloudsGenerator.containerClouds.style.animationDuration = Math.floor(Math.random() * (100 - 50) + 50)+'s';
+        });
+    });
 }
 class Rect {
     constructor(top, left, rect_text, play, options, backToMenu) {
