@@ -160,7 +160,7 @@ function clouds() {
         
         //4 parâmetros para o container das nuvens
         Math.random()*75+'%',
-        Math.floor(Math.random() * window.innerWidth)+'px',
+        Math.floor(Math.random() * window.innerWidth-300)+'px',
         'goLeftFromRandomLeft 5s linear',
         Math.floor(Math.random() * (60 - 20) + 20)+'s', 
 
@@ -353,6 +353,7 @@ function removeOfBody_options() {
 //Fim das opções;
 
 //Inicia o jogo:
+
 function gameScreen() {
     alert('game');
 }
